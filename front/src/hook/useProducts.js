@@ -7,41 +7,42 @@ import {
   deleteProduct,
 } from "../api/products.api.js";
 
-export function useProducts() {
+export function useProducts(productId) {
   const [products, setProducts] = useState([]);
   const [initialData, setInitialData] = useState(null);
 
+  // Obtener lista
   useEffect(() => {
     getProducts().then(setProducts);
   }, []);
 
-  const fetchProductbyId = async (id) => {
-    const product = await getProduct(id);
-    setInitialData(product);
-  };
+  // Producto por ID (SOLO si hay id)
+  useEffect(() => {
+    if (!productId) return;
+    getProduct(productId).then(setInitialData);
+  }, [productId]);
 
   const addProduct = async (product) => {
-    const newProduct = await createProduct(product);
-    setProducts([...products, newProduct]);
+    await createProduct(product);
+    const data = await getProducts();
+    setProducts(data);
   };
 
   const editProduct = async (id, product) => {
-    const updatedProduct = await updateProduct(id, product);
+    await updateProduct(id, product);
     setProducts((prev) =>
-      prev.map((p) => (p.id_product === id ? { ...p, ...updatedProduct } : p)),
+      prev.map((p) => (p.id_product === id ? { ...p, ...product } : p)),
     );
   };
 
   const removeProduct = async (id) => {
     await deleteProduct(id);
-    setProducts(products.filter((p) => p.id_product !== id));
+    setProducts((prev) => prev.filter((p) => p.id_product !== id));
   };
 
   return {
     products,
-    setProducts,
     initialData,
-    fetchProductbyId,
     addProduct,
     editProduct,
     removeProduct,

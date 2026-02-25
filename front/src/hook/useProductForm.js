@@ -11,13 +11,13 @@ export function useProductForm({ initialData, onSubmit } = {}) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (initialData) {
-      setProduct({
-        name: initialData.name ?? "",
-        description: initialData.description ?? "",
-        stock: initialData.stock ?? 0,
-      });
-    }
+    if (!initialData) return;
+
+    setProduct({
+      name: initialData.name ?? "",
+      description: initialData.description ?? "",
+      stock: initialData.stock ?? 0,
+    });
   }, [initialData]);
 
   const handleChange = (e) => {
