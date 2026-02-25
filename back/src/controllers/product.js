@@ -4,7 +4,7 @@ const ProductController = {
   mostrarProductos: async (req, res) => {
     try {
       const productos = await Product.buscarTodos();
-      res.json({ success: true, data: productos[0] });
+      res.json(productos[0]);
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
