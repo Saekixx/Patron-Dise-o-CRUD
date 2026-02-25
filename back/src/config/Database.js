@@ -4,7 +4,7 @@ class DataBase {
   constructor() {
     // Patron Singleton
     // Si el objeto DataBase existe usa ese mismo objeto
-    if (Database.instance) return DataBase.instance;
+    if (DataBase.instance) return DataBase.instance;
 
     this.pool = createPool({
       host: "localhost",

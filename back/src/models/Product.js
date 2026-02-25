@@ -9,6 +9,10 @@ class Product {
   }
 
   static async buscarTodos() {
-    return await db.query("CALL");
+    return await db.query("CALL listar_productos()");
+  }
+
+  static async buscarPorId() {
+    return await db.query("CALL listar_producto(?)", [this.id]);
   }
 }
