@@ -14,10 +14,10 @@ aseguramos que la aplicacion reutilice el mismo pool de conexiones.
 
 MVC - El BackEnd implementa un patron MVC adaptado a un API REST
 El modelo maneja los datos, el controlador contiene la logia de negocio, las rutas
-exponen los EndPoints
+exponen los EndPoints.
 
 Las vistas no se renderizan en el servidor, ya que la API devuelve respuestas en
-formato JSON que son consumidas por El FrontEnd
+formato JSON que son consumidas por El FrontEnd.
 
 # Front
 

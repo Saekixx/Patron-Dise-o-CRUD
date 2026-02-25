@@ -1,20 +1,11 @@
 import { Button } from "@radix-ui/themes";
-import { useState } from "react";
+import { useProductForm } from "../hook/useProductForm";
 
 function ProductForm({ onSubmit, initialData }) {
-  const [product, setProduct] = useState(initialData);
-
-  const handleChange = (e) => {
-    setProduct({
-      ...product,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSubmit(product);
-  };
+  const { handleChange, handleSubmit, product } = useProductForm({
+    initialData,
+    onSubmit,
+  });
 
   return (
     <div className="flex justify-center min-h-screen items-start pt-10">
@@ -22,8 +13,6 @@ function ProductForm({ onSubmit, initialData }) {
         className="w-full max-w-md flex flex-col gap-3 p-4 bg-white rounded shadow"
         onSubmit={handleSubmit}
       >
-        <h1 className="text-3xl font-bold text-center mb-6">Editar Producto</h1>
-
         <label htmlFor="name">Nombre</label>
         <input
           type="text"
@@ -57,8 +46,8 @@ function ProductForm({ onSubmit, initialData }) {
           className="border px-2 py-1 rounded"
         />
 
-        <Button type="submit" className="mt-4">
-          Guardar
+        <Button asChild className="mt-4">
+          <button type="submit">Guardar</button>
         </Button>
       </form>
     </div>

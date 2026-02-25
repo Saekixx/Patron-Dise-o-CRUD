@@ -1,52 +1,55 @@
-import { useEffect, useState } from "react";
+import { useProducts } from "../hook/useProducts";
 import { Link } from "react-router-dom";
 import { Pencil, Trash2 } from "lucide-react";
 import { Button } from "@radix-ui/themes";
 
 function TableProduct() {
-  const [product, setProduct] = useState([]);
+  const { products, removeProduct } = useProducts();
 
-  const getProduct = async () => {
-    const response = await fetch("http://localhost:3000/products");
-    const producto = await response.json();
-    setProduct(producto.data);
-  };
-
-  const deleteProduct = async (id) => {
-    await fetch(`http://localhost:3000/products/${id}`, {
-      method: "DELETE",
-    });
-    getProduct();
-  };
-
-  useEffect(() => {
-    getProduct();
-  }, []);
-
-  const HTMLproduct = product.map((p) => {
+  const HTMLproduct = products.map((p) => {
     return (
-      <tr key={p.id_product} className="hover:bg-base-200 transition-colors">
-        <td className="text-center">{p.id_product}</td>
-        <td className="text-center">{p.name}</td>
-        <td className="text-center">{p.description}</td>
-        <td className="text-center">{p.stock}</td>
-        <td className="flex justify-center gap-3">
-          <Link to={`/edit/${p.id_product}`}>
-            <Pencil />
-          </Link>
-          <button
-            onClick={() => {
-              if (
-                window.confirm(
-                  "¿Estás seguro de que quieres eliminar este producto?",
-                )
-              ) {
-                deleteProduct(p.id_product);
-              }
-            }}
-          >
-            <Trash2 />
-          </button>
+      <tr
+        key={p.id_product}
+        className="border-b border-gray-200 hover:bg-gray-50 transition-colors duration-150"
+      >
+        <td className="px-4 py-3 text-center text-sm font-medium text-gray-700">
+          {p.id_product}
+        </td>
+
+        <td className="px-4 py-3 text-sm text-gray-800">{p.name}</td>
+
+        <td className="px-4 py-3 text-sm text-gray-600">{p.description}</td>
+
+        <td className="px-4 py-3 text-center text-sm font-semibold text-gray-700">
+          {p.stock}
+        </td>
+
+        <td className="px-4 py-3">
+          <div className="flex justify-center gap-2">
+            <Link
+              to={`/edit/${p.id_product}`}
+              className="p-2 rounded-md text-blue-600 hover:bg-blue-100 transition"
+              title="Editar"
+            >
+              <Pencil size={18} />
+            </Link>
+
+            <button
+              onClick={() => {
+                if (
+                  window.confirm(
+                    "¿Estás seguro de que quieres eliminar este producto?",
+                  )
+                ) {
+                  removeProduct(p.id_product);
+                }
+              }}
+              className="p-2 rounded-md text-red-600 hover:bg-red-100 transition"
+              title="Eliminar"
+            >
+              <Trash2 size={18} />
+            </button>
+          </div>
         </td>
       </tr>
     );
@@ -69,12 +72,6 @@ function TableProduct() {
 
             <tbody>{HTMLproduct}</tbody>
           </table>
-        </div>
-
-        <div className="flex justify-normal max-w-4xl w-40 h-8">
-          <Button>
-            <Link to="/create">Crear Producto</Link>
-          </Button>
         </div>
       </div>
     </>
