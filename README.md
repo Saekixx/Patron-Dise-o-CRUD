@@ -21,4 +21,9 @@ formato JSON que son consumidas por El FrontEnd.
 
 # Front
 
-Solid
+Patrón Container / Presentational:
+Se utiliza para separar la lógica de negocio y el manejo de estado de la interfaz de usuario.
+Los hooks personalizados actúan como contenedores (containers), mientras que los componentes se encargan únicamente de la presentación.
+
+Service Layer:
+Las llamadas al backend se centralizan en una capa de servicios para desacoplar la lógica de acceso a datos de los componentes.
