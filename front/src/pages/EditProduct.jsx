@@ -12,7 +12,7 @@ function EditProduct() {
       try {
         const res = await fetch(`http://localhost:3000/products/${id}`);
         const data = await res.json();
-        setInitialData(data[0]);
+        setInitialData(data);
       } catch (err) {
         console.error("Error al cargar el producto:", err);
       }

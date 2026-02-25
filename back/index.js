@@ -1,23 +1,21 @@
-import express from "express"
-import router from "./src/routes/product.route.js"
-import cors from "cors"
+import express from "express";
+import router from "./src/routes/product.route.js";
+import cors from "cors";
 
+const app = express();
 
+const PORT = 3000;
 
-const app = express()
+app.use(cors());
 
-const PORT = 3000
+app.use(express.json());
 
-app.use(cors())
+app.get("/", (req, res) => {
+  res.send("Hola");
+});
 
-app.use(express.json())
-
-app.get("/", (req,res)=> {
-    res.send("Hola")
-})
-
-app.use("/products", router)
+app.use("/products", router);
 
 app.listen(PORT, () => {
-    console.log("Servidor corriendo en ",PORT)
-})
+  console.log("Servidor corriendo en ", PORT);
+});
