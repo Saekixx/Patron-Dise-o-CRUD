@@ -14,9 +14,9 @@ export function useProductForm({ initialData, onSubmit } = {}) {
     if (!initialData) return;
 
     setProduct({
-      name: initialData.name ?? "",
-      description: initialData.description ?? "",
-      stock: initialData.stock ?? 0,
+      name: initialData.name,
+      description: initialData.description,
+      stock: initialData.stock,
     });
   }, [initialData]);
 
@@ -24,7 +24,7 @@ export function useProductForm({ initialData, onSubmit } = {}) {
     const { name, value } = e.target;
     setProduct((prev) => ({
       ...prev,
-      [name]: name === "stock" ? Number(value) : value,
+      [name]: value,
     }));
   };
 

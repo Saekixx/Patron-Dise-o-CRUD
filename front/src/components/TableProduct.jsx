@@ -57,7 +57,7 @@ function TableProduct() {
 
   return (
     <>
-      <div className="flex flex-col mt-6 gap-4">
+      <div className="flex flex-col mt-6 gap-4 pb-4">
         <div className="overflow-x-auto rounded-xl border border-base-300 shadow-md max-w-4xl w-full">
           <table className="table table-zebra table-fixed w-full">
             <thead className="bg-base-200 text-base-content">
