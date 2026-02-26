@@ -22,8 +22,12 @@ formato JSON que son consumidas por El FrontEnd.
 # Front
 
 Patrón Container / Presentational:
-Se utiliza para separar la lógica de negocio y el manejo de estado de la interfaz de usuario.
-Los hooks personalizados actúan como contenedores (containers), mientras que los componentes se encargan únicamente de la presentación.
+Separa Logica / Estado / Efecto
+Container se encarga de: 
+Manejo de estados / Llamar APIs / usar hooks / Pasar datos y funciones
+Presentational se encarga de:
+Mostrar Datos / Recibir Props / Manejar JSX y Estilos
 
 Service Layer:
-Las llamadas al backend se centralizan en una capa de servicios para desacoplar la lógica de acceso a datos de los componentes.
+Es una capa intermedia que se encarga de comunicarse con el backend
+Como nuestra carpeta API donde estan las funciones que se comunican con el.
