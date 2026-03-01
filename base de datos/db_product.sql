@@ -66,8 +66,8 @@ DELIMITER ;
 
 CREATE TABLE `tb_product` (
   `id_product` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `description` varchar(50) NOT NULL,
+  `name` varchar(55) NOT NULL,
+  `description` varchar(150) NOT NULL,
   `stock` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
