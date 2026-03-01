@@ -6,18 +6,15 @@ Refactorizamos nuestro CRUD con patrones de diseño
 
 # Back
 
-MVC - Singlenton
+Singlenton - Patron Active Record
 
 Singlenton - Lo use en la clase de Database para garantizar una única instacia
 de la Conexion a la Base de Datos, asi evitamos multiples conexion innecesarias y
 aseguramos que la aplicacion reutilice el mismo pool de conexiones.
 
-MVC - El BackEnd implementa un patron MVC adaptado a un API REST
-El modelo maneja los datos, el controlador contiene la logia de negocio, las rutas
-exponen los EndPoints.
-
-Las vistas no se renderizan en el servidor, ya que la API devuelve respuestas en
-formato JSON que son consumidas por El FrontEnd.
+Patron Active Record - Es un enfoque donde la clase tiene los comportamientos
+del CRUD en funciones. Es ideal para aplicaciones sencillas con logica de negocio
+no muy compleja
 
 # Front
 
